@@ -1,0 +1,36 @@
+{
+  "name": "meta-codeowners",
+  "version": "0.0.0",
+  "description": "codeowners plugin for meta",
+  "main": "index.js",
+  "bin": {
+    "meta-codeowners": "./bin/meta-codeowners"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/loadsmart/meta-codeowners.git"
+  },
+  "keywords": [
+    "codeowners",
+    "meta",
+    "repo",
+    "repository",
+    "metarepository",
+    "metarepo"
+  ],
+  "author": "{[.GITHUB_EMAIL.]}",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loadsmart/meta-codeowners/issues"
+  },
+  "homepage": "https://github.com/loadsmart/meta-codeowners#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "debug": "^2.3.3",
+    "meta-exec": "0.0.0"
+  }
+}

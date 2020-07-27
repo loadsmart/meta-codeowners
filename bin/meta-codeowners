@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+let loaded = false;
+
+if (loaded) return process.kill();
+
+const program = require('commander');
+const process = require('process');
+const debug = require('debug')('meta-codeowners');
+const fs = require("fs");
+
+program
+  .command('replace <old-team> <new-team>', 'Replace old-team with new-team in CODEOWNERS')
+  .action((oldTeam, newTeam) => {
+    contents = fs.readFileSync('CODEOWNERS', { encoding: "utf-8" })
+
+    const re = new RegExp(`(\\s+)${oldTeam}(\\s+)`, 'i')
+    const result = contents.toString().replace(re, `\$1${newTeam}\$2`)
+
+    fs.writeFileSync('CODEOWNERS', result)
+  })
+
+program.parse(process.argv);
+
+loaded = true;
