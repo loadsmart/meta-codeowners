@@ -10,12 +10,20 @@ npm install meta-codeowners
 
 ## Commands
 
-### replace
+### add
+
+Adds an entry to the `CODEOWNERS` file.
+
+```shell
+meta codeowners add --pattern '*' team-a team-b
+```
+
+### rename
 
 Replaces `old-team` with `new-team` in `CODEOWNERS` file.
 
 ```shell
-meta codeowners replace old-team new-team
+meta codeowners rename old-team new-team
 ```
 
 ## License

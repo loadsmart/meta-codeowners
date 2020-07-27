@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const chalk = require("chalk");
+const process = require('process');
+const fs = require("fs");
+const { Command } = require('commander');
+
+const program = new Command();
+
+program
+  .option("-f, --file <path>", "Path to CODEOWNERS file", ".github/CODEOWNERS")
+  .action((cmd, args) => {
+    const oldTeam = args[0];
+    const newTeam = args[1];
+
+    try {
+      contents = fs.readFileSync(program.file, { encoding: "utf-8" })
+    } catch {
+      console.log(`File ${program.file} not found`);
+      return;
+    }
+
+    const re = new RegExp(`(\\s+)${oldTeam}(\\s+)`, 'i')
+    const result = contents.toString().replace(re, `\$1${newTeam}\$2`)
+
+    fs.writeFileSync(program.file, result)
+    console.log(chalk.green(`Team '${oldTeam}' replaced by '${newTeam}' in '${program.file}'`));
+  });
+
+program.parse(process.argv);

@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const process = require('process');
+const fs = require("fs");
+const { Command } = require('commander');
+
+const program = new Command();
+
+program
+    .requiredOption("-p, --pattern <p>", "Path to assign to teams")
+    .option("-f, --file <path>", "Path to CODEOWNERS file", ".github/CODEOWNERS");
+
+program.parse(process.argv);
+
+fs.appendFileSync(program.file, `${program.pattern}  ${program.args.join(" ")}\n`, { encoding: "utf-8" })
